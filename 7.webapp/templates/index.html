@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <button id="test" onclick="test()">버튼</button>
+    <div id="hi">
+        <!-- <table style="width:100%">
+            <tr>
+                <th>name</th>
+                <th>image</th>
+
+            </tr>
+            <tr>
+                <td>르브론 18 로우</td>
+                <td><img
+                        src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CV7562-005/eb87cd6a-1e9b-4eae-924a-f1b872cfb302_primary.jpg?snkrBrowse">
+                </td>
+
+            </tr>
+            <tr>
+                <td>르브론 18 로우</td>
+                <td><img
+                        src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CV7562-104/6f798b90-49eb-4ddc-a86a-4868f86aaad3_primary.jpg?snkrBrowse">
+                </td>
+
+            </tr>
+            <tr>
+                <td>르브론 18 로우</td>
+                <td><img
+                        src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CV7562-005/eb87cd6a-1e9b-4eae-924a-f1b872cfb302_primary.jpg?snkrBrowse">
+                </td>
+
+            </tr>
+            <tr>
+                <td>data[0].name</td>
+                <td><img src=data[0].img>
+                </td>
+
+            </tr>
+        </table> -->
+    </div>
+
+    <script>
+        function test() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {  //정상 응답 완료 여부 검증 
+                    data = this.responseText;
+                    // console.log(type(data)); // string
+                    data = JSON.parse(data)
+                    console.log(data[0].img)
+                    // for i in soup.find_all("", class_=
+                    arrr = `<table style="width:100%">
+                        <tr>
+                            <th>name</th>
+                            <th>image</th>
+                        </tr>`;
+                    for (i in data) {
+                        console.log(i);
+                        x = `<tr>
+                        <td>${data[i].name}</td>
+                        <td><img src=${data[i].img}></td>
+                        </tr>
+                        `
+                        arrr = arrr + x;
+                        console.log(arrr)
+                    };
+                    arrr = arrr + '</table>';
+                    console.log(arrr);
+                    document.getElementById('hi').innerHTML = arrr;
+                }
+            };
+            xhttp.open("POST", "getdata");   //http://127.0.0.1:5000/getemp으로 post로 데이터 저장
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>
+
+
+<!-- <li class="launch-list-item item-imgwrap d-md-h ncss-col-sm-12 va-sm-t pb0-sm prl0-sm  upcomingItem soldout complete"
+    data-component-launchitem="" data-tag-pw-list-item=""
+    data-component-categoryitem="{parentWrapper:.item-list-wrap, imgWrapper:.item-imgwrap}"
+    data-active-date="2021/07/09 10:00">
+    <div class="upcoming upcoming-card ncss-row mr0-sm ml0-sm">
+        <div class="ncss-col-sm-3 full">
+            <a class="card-link d-sm-b comingsoon" data-tag-pw-rank-product-id="CV7562-401"
+                href="/kr/launch/t/adult-unisex/fw/basketball/CV7562-401/djqd35/lebron-xviii-low" title="르브론 18 로우">
+                <img class="img-component image-component mod-image-component u-full-width" alt="Wile E. vs Roadrunner"
+                    src="https://static-breeze.nike.co.kr/kr/ko_kr/cmsstatic/product/CV7562-401/bab85330-ffa8-4b42-8cc1-5fba74f8b1ad_primary.jpg?snkrBrowse"
+                    style="display: block;">
+            </a>
+        </div>
+        <a class="ncss-col-sm-8 launch-details u-full-height va-sm-t full comingsoon"
+            data-tag-pw-rank-product-id="CV7562-401"
+            href="/kr/launch/t/adult-unisex/fw/basketball/CV7562-401/djqd35/lebron-xviii-low" title="르브론 18 로우">
+            <div class="d-sm-t u-full-height ml3-sm">
+                <div class="d-sm-tc va-sm-m">
+                    <h3 class="headline-5 mb1-sm fs16-sm">르브론 18 로우</h3>
+                    <h6 class="text-color-secondary mb-1-sm body-3">
+                        <div class="available-date-component">7/9 오전 10:00 출시 예정</div>
+                    </h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <input type="hidden" name="producturl"
+        value="/kr/launch/t/adult-unisex/fw/basketball/CV7562-401/djqd35/lebron-xviii-low">
+    <div class="hidden" data-iscomingsoon="true" data-iscdp="false" data-isout="true" data-snkrstype="upcoming"></div>
+</li> -->
